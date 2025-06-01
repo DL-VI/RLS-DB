@@ -1,0 +1,4 @@
+CREATE VIEW [nombre_vista] AS [Select]
+SELECT * FROM VIEW_NAME;
+
+DROP VIEW;
