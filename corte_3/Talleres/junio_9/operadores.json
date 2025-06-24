@@ -1,0 +1,280 @@
+[{
+  "_id": {
+    "$oid": "6844de2c769f23b9ca27a46a"
+  },
+  "operador": "$and",
+  "descripcion": "Devuelve true si TODOS los subcriterios se cumplen",
+  "sintaxis": {
+    "forma": "$and: [ <cond1>, <cond2>, ... ]"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$and": [
+        {
+          "edad": {
+            "$gt": 18
+          }
+        },
+        {
+          "activo": true
+        }
+      ]
+    },
+    "explicación": "Personas mayores de 18 que además estén activas"
+  }
+},
+{
+  "_id": {
+    "$oid": "6844de2c769f23b9ca27a46b"
+  },
+  "operador": "$or",
+  "descripcion": "Devuelve true si AL MENOS uno de los subcriterios se cumple",
+  "sintaxis": {
+    "forma": "$or: [ <cond1>, <cond2>, ... ]"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "ciudad": "Bogotá"
+        },
+        {
+          "ciudad": "Cali"
+        }
+      ]
+    },
+    "explicación": "Personas que vivan en Bogotá o en Cali"
+  }
+},
+{
+  "_id": {
+    "$oid": "6844de2c769f23b9ca27a46c"
+  },
+  "operador": "$not",
+  "descripcion": "Invierte el resultado de la expresión que recibe",
+  "sintaxis": {
+    "forma": "$not: <condición>"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$not": {
+          "$gt": 30
+        }
+      }
+    },
+    "explicación": "Personas que NO tengan edad mayor a 30"
+  }
+},
+{
+  "_id": {
+    "$oid": "6844de2c769f23b9ca27a46d"
+  },
+  "operador": "$nor",
+  "descripcion": "Devuelve true si NINGUNO de los subcriterios se cumple",
+  "sintaxis": {
+    "forma": "$nor: [ <cond1>, <cond2>, ... ]"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$nor": [
+        {
+          "puntuación": {
+            "$lt": 50
+          }
+        },
+        {
+          "activo": false
+        }
+      ]
+    },
+    "explicación": "Personas con puntuación ≥ 50 y activas"
+  }
+},
+{
+  "_id": {
+    "$oid": "6844dee9769f23b9ca27a46e"
+  },
+  "operador": "$expr",
+  "descripcion": "Permite usar expresiones de agregación en la etapa de consulta",
+  "sintaxis": {
+    "forma": "$expr: <expresión de agregación>"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$expr": {
+        "$gt": [
+          "$cantidad",
+          "$umbral"
+        ]
+      }
+    },
+    "explicación": "Selecciona documentos donde el campo cantidad > campo umbral"
+  }
+},
+{
+  "_id": {
+    "$oid": "6844dee9769f23b9ca27a46f"
+  },
+  "operador": "$where",
+  "descripcion": "Evalúa una función JavaScript personalizada para filtrar documentos",
+  "sintaxis": {
+    "forma": "$where: <función JS | cadena JS>"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$where": "this.edad % 2 == 0"
+    },
+    "explicación": "Selecciona documentos donde la propiedad edad es un número par"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a47f"
+  },
+  "operador": "$eq",
+  "descripcion": "Compara si un valor es igual al valor especificado",
+  "sintaxis": {
+    "forma": "{ campo: { $eq: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$eq": 30
+      }
+    },
+    "explicación": "Documentos donde la edad es exactamente 30"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a480"
+  },
+  "operador": "$ne",
+  "descripcion": "Compara si un valor es diferente al valor especificado",
+  "sintaxis": {
+    "forma": "{ campo: { $ne: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "estado": {
+        "$ne": "activo"
+      }
+    },
+    "explicación": "Documentos donde el estado NO es 'activo'"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a481"
+  },
+  "operador": "$gt",
+  "descripcion": "Compara si un valor es mayor que el valor especificado",
+  "sintaxis": {
+    "forma": "{ campo: { $gt: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "puntuacion": {
+        "$gt": 80
+      }
+    },
+    "explicación": "Documentos donde la puntuación es mayor a 80"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a482"
+  },
+  "operador": "$gte",
+  "descripcion": "Compara si un valor es mayor o igual al valor especificado",
+  "sintaxis": {
+    "forma": "{ campo: { $gte: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$gte": 18
+      }
+    },
+    "explicación": "Documentos donde la edad es mayor o igual a 18"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a483"
+  },
+  "operador": "$lt",
+  "descripcion": "Compara si un valor es menor que el valor especificado",
+  "sintaxis": {
+    "forma": "{ campo: { $lt: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "precio": {
+        "$lt": 100
+      }
+    },
+    "explicación": "Documentos donde el precio es menor a 100"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a484"
+  },
+  "operador": "$lte",
+  "descripcion": "Compara si un valor es menor o igual al valor especificado",
+  "sintaxis": {
+    "forma": "{ campo: { $lte: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$lte": 60
+      }
+    },
+    "explicación": "Documentos donde la edad es menor o igual a 60"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a485"
+  },
+  "operador": "$in",
+  "descripcion": "Comprueba si un valor está presente en un arreglo de valores",
+  "sintaxis": {
+    "forma": "{ campo: { $in: [valor1, valor2, ...] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "ciudad": {
+        "$in": [
+          "Bogotá",
+          "Medellín"
+        ]
+      }
+    },
+    "explicación": "Documentos donde la ciudad es Bogotá o Medellín"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474204769f23b9ca27a486"
+  },
+  "operador": "$nin",
+  "descripcion": "Comprueba si un valor NO está en un arreglo de valores",
+  "sintaxis": {
+    "forma": "{ campo: { $nin: [valor1, valor2, ...] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "ciudad": {
+        "$nin": [
+          "Cali",
+          "Barranquilla"
+        ]
+      }
+    },
+    "explicación": "Documentos donde la ciudad NO es Cali ni Barranquilla"
+  }
+}]

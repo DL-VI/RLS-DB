@@ -1,0 +1,702 @@
+[{
+  "_id": {
+    "$oid": "68474029769f23b9ca27a470"
+  },
+  "operadores": [
+    "$and",
+    "$or"
+  ],
+  "descripcion": "Anidar $or dentro de un $and",
+  "sintaxis": {
+    "forma": "{ $and: [ { $or: [ <cond1>, <cond2> ] }, <cond3> ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$and": [
+        {
+          "$or": [
+            {
+              "edad": {
+                "$gt": 18
+              }
+            },
+            {
+              "ciudad": "Cali"
+            }
+          ]
+        },
+        {
+          "activo": true
+        }
+      ]
+    },
+    "explicacion": "Usuarios que (edad > 18 o viven en Cali) y están activos"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474029769f23b9ca27a471"
+  },
+  "operadores": [
+    "$and",
+    "$not"
+  ],
+  "descripcion": "Combinar $and con $not",
+  "sintaxis": {
+    "forma": "{ $and: [ <cond1>, { $not: <cond2> } ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$and": [
+        {
+          "rol": "usuario"
+        },
+        {
+          "$not": {
+            "edad": {
+              "$lt": 18
+            }
+          }
+        }
+      ]
+    },
+    "explicacion": "Usuarios con rol 'usuario' y edad ≥ 18"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474029769f23b9ca27a472"
+  },
+  "operadores": [
+    "$and",
+    "$nor"
+  ],
+  "descripcion": "Anidar $nor dentro de un $and",
+  "sintaxis": {
+    "forma": "{ $and: [ { $nor: [ <cond1>, <cond2> ] }, <cond3> ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$and": [
+        {
+          "$nor": [
+            {
+              "pais": "Argentina"
+            },
+            {
+              "pais": "Chile"
+            }
+          ]
+        },
+        {
+          "suscrito": true
+        }
+      ]
+    },
+    "explicacion": "Suscritos que NO están en Argentina ni Chile"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474029769f23b9ca27a473"
+  },
+  "operadores": [
+    "$and",
+    "$expr"
+  ],
+  "descripcion": "Usar $expr dentro de un $and",
+  "sintaxis": {
+    "forma": "{ $and: [ { $expr: <expresión> }, <cond2> ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$and": [
+        {
+          "$expr": {
+            "$gt": [
+              "$ventas",
+              "$umbral"
+            ]
+          }
+        },
+        {
+          "año": 2025
+        }
+      ]
+    },
+    "explicacion": "Documentos de 2025 donde ventas > umbral"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474029769f23b9ca27a474"
+  },
+  "operadores": [
+    "$and",
+    "$where"
+  ],
+  "descripcion": "Anidar $where dentro de un $and",
+  "sintaxis": {
+    "forma": "{ $and: [ <cond1>, { $where: <función JS> } ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$and": [
+        {
+          "activo": true
+        },
+        {
+          "$where": "this.puntos % 5 === 0"
+        }
+      ]
+    },
+    "explicacion": "Usuarios activos con puntos múltiplos de 5"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474075769f23b9ca27a475"
+  },
+  "operadores": [
+    "$or",
+    "$not"
+  ],
+  "descripcion": "Anidar $not dentro de un $or",
+  "sintaxis": {
+    "forma": "{ $or: [ <cond1>, { $not: <cond2> } ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "estado": "pendiente"
+        },
+        {
+          "$not": {
+            "prioridad": "alta"
+          }
+        }
+      ]
+    },
+    "explicacion": "Tareas en estado pendiente o que NO tienen prioridad alta"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474075769f23b9ca27a476"
+  },
+  "operadores": [
+    "$or",
+    "$nor"
+  ],
+  "descripcion": "Usar $nor dentro de un $or",
+  "sintaxis": {
+    "forma": "{ $or: [ { $nor: [ <cond1>, <cond2> ] }, <cond3> ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "$nor": [
+            {
+              "categoria": "ropa"
+            },
+            {
+              "categoria": "accesorios"
+            }
+          ]
+        },
+        {
+          "disponible": true
+        }
+      ]
+    },
+    "explicacion": "Productos disponibles o que NO son ropa ni accesorios"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474075769f23b9ca27a477"
+  },
+  "operadores": [
+    "$or",
+    "$expr"
+  ],
+  "descripcion": "Anidar $expr dentro de un $or",
+  "sintaxis": {
+    "forma": "{ $or: [ { $expr: <expresión> }, <cond2> ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "$expr": {
+            "$lt": [
+              "$precio",
+              "$costo"
+            ]
+          }
+        },
+        {
+          "oferta": true
+        }
+      ]
+    },
+    "explicacion": "Productos con pérdida (precio < costo) o en oferta"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474075769f23b9ca27a478"
+  },
+  "operadores": [
+    "$or",
+    "$where"
+  ],
+  "descripcion": "Combinar $or con $where",
+  "sintaxis": {
+    "forma": "{ $or: [ <cond1>, { $where: <función JS> } ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "stock": {
+            "$lt": 10
+          }
+        },
+        {
+          "$where": "this.nombre.startsWith('A')"
+        }
+      ]
+    },
+    "explicacion": "Productos con stock bajo o cuyo nombre empieza con 'A'"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474075769f23b9ca27a479"
+  },
+  "operadores": [
+    "$not",
+    "$nor"
+  ],
+  "descripcion": "Usar $not junto con $nor",
+  "sintaxis": {
+    "forma": "{ $not: { $nor: [ <cond1>, <cond2> ] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$not": {
+        "$nor": [
+          {
+            "tipo": "temporal"
+          },
+          {
+            "tipo": "contratista"
+          }
+        ]
+      }
+    },
+    "explicacion": "Documentos que NO cumplen que tipo sea temporal ni contratista (equivalente a un $or)"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474096769f23b9ca27a47a"
+  },
+  "operadores": [
+    "$or",
+    "$not"
+  ],
+  "descripcion": "Anidar $not dentro de un $or",
+  "sintaxis": {
+    "forma": "{ $or: [ <cond1>, { $not: <cond2> } ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "estado": "pendiente"
+        },
+        {
+          "$not": {
+            "prioridad": "alta"
+          }
+        }
+      ]
+    },
+    "explicacion": "Tareas en estado pendiente o que NO tienen prioridad alta"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474096769f23b9ca27a47b"
+  },
+  "operadores": [
+    "$or",
+    "$nor"
+  ],
+  "descripcion": "Usar $nor dentro de un $or",
+  "sintaxis": {
+    "forma": "{ $or: [ { $nor: [ <cond1>, <cond2> ] }, <cond3> ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "$nor": [
+            {
+              "categoria": "ropa"
+            },
+            {
+              "categoria": "accesorios"
+            }
+          ]
+        },
+        {
+          "disponible": true
+        }
+      ]
+    },
+    "explicacion": "Productos disponibles o que NO son ropa ni accesorios"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474096769f23b9ca27a47c"
+  },
+  "operadores": [
+    "$or",
+    "$expr"
+  ],
+  "descripcion": "Anidar $expr dentro de un $or",
+  "sintaxis": {
+    "forma": "{ $or: [ { $expr: <expresión> }, <cond2> ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "$expr": {
+            "$lt": [
+              "$precio",
+              "$costo"
+            ]
+          }
+        },
+        {
+          "oferta": true
+        }
+      ]
+    },
+    "explicacion": "Productos con pérdida (precio < costo) o en oferta"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474096769f23b9ca27a47d"
+  },
+  "operadores": [
+    "$or",
+    "$where"
+  ],
+  "descripcion": "Combinar $or con $where",
+  "sintaxis": {
+    "forma": "{ $or: [ <cond1>, { $where: <función JS> } ] }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$or": [
+        {
+          "stock": {
+            "$lt": 10
+          }
+        },
+        {
+          "$where": "this.nombre.startsWith('A')"
+        }
+      ]
+    },
+    "explicacion": "Productos con stock bajo o cuyo nombre empieza con 'A'"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474096769f23b9ca27a47e"
+  },
+  "operadores": [
+    "$not",
+    "$nor"
+  ],
+  "descripcion": "Usar $not junto con $nor",
+  "sintaxis": {
+    "forma": "{ $not: { $nor: [ <cond1>, <cond2> ] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "$not": {
+        "$nor": [
+          {
+            "tipo": "temporal"
+          },
+          {
+            "tipo": "contratista"
+          }
+        ]
+      }
+    },
+    "explicacion": "Documentos que NO cumplen que tipo sea temporal ni contratista (equivalente a un $or)"
+  }
+},
+{
+  "_id": {
+    "$oid": "6847451c769f23b9ca27a487"
+  },
+  "operadores": [
+    "$gt",
+    "$lt"
+  ],
+  "descripcion": "Valores entre dos números (excluyentes)",
+  "sintaxis": {
+    "forma": "{ campo: { $gt: valorMin, $lt: valorMax } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$gt": 18,
+        "$lt": 30
+      }
+    },
+    "explicación": "Personas mayores de 18 y menores de 30"
+  }
+},
+{
+  "_id": {
+    "$oid": "6847451c769f23b9ca27a488"
+  },
+  "operadores": [
+    "$gte",
+    "$lte"
+  ],
+  "descripcion": "Valores dentro de un rango (incluye límites)",
+  "sintaxis": {
+    "forma": "{ campo: { $gte: valorMin, $lte: valorMax } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "precio": {
+        "$gte": 100,
+        "$lte": 500
+      }
+    },
+    "explicación": "Productos con precio entre 100 y 500, inclusive"
+  }
+},
+{
+  "_id": {
+    "$oid": "6847451c769f23b9ca27a489"
+  },
+  "operadores": [
+    "$eq",
+    "$in"
+  ],
+  "descripcion": "Igualdad y pertenencia a conjunto",
+  "sintaxis": {
+    "forma": "{ campo1: { $eq: valor }, campo2: { $in: [v1, v2] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "estado": {
+        "$eq": "activo"
+      },
+      "ciudad": {
+        "$in": [
+          "Bogotá",
+          "Medellín"
+        ]
+      }
+    },
+    "explicación": "Personas activas que están en Bogotá o Medellín"
+  }
+},
+{
+  "_id": {
+    "$oid": "6847451c769f23b9ca27a48a"
+  },
+  "operadores": [
+    "$ne",
+    "$nin"
+  ],
+  "descripcion": "Distinto y fuera de un conjunto",
+  "sintaxis": {
+    "forma": "{ campo1: { $ne: valor }, campo2: { $nin: [v1, v2] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "estado": {
+        "$ne": "inactivo"
+      },
+      "ciudad": {
+        "$nin": [
+          "Cali",
+          "Barranquilla"
+        ]
+      }
+    },
+    "explicación": "Personas que no están inactivas y no viven en Cali ni Barranquilla"
+  }
+},
+{
+  "_id": {
+    "$oid": "6847451c769f23b9ca27a48b"
+  },
+  "operadores": [
+    "$gt",
+    "$in"
+  ],
+  "descripcion": "Valor mayor que un número y contenido en un conjunto",
+  "sintaxis": {
+    "forma": "{ campo1: { $gt: valor }, campo2: { $in: [v1, v2] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$gt": 25
+      },
+      "departamento": {
+        "$in": [
+          "Ventas",
+          "Marketing"
+        ]
+      }
+    },
+    "explicación": "Empleados mayores de 25 años que trabajan en Ventas o Marketing"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474558769f23b9ca27a48c"
+  },
+  "operadores": [
+    "$eq",
+    "$ne"
+  ],
+  "descripcion": "Igualdad y diferencia aplicadas a campos distintos",
+  "sintaxis": {
+    "forma": "{ campo1: { $eq: valor }, campo2: { $ne: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "estado": {
+        "$eq": "activo"
+      },
+      "rol": {
+        "$ne": "admin"
+      }
+    },
+    "explicación": "Usuarios activos que no sean administradores"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474558769f23b9ca27a48d"
+  },
+  "operadores": [
+    "$lt",
+    "$in"
+  ],
+  "descripcion": "Valor menor que un límite y dentro de un conjunto",
+  "sintaxis": {
+    "forma": "{ campo1: { $lt: valor }, campo2: { $in: [v1, v2] } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$lt": 40
+      },
+      "ciudad": {
+        "$in": [
+          "Bogotá",
+          "Cali"
+        ]
+      }
+    },
+    "explicación": "Personas menores de 40 años en Bogotá o Cali"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474558769f23b9ca27a48e"
+  },
+  "operadores": [
+    "$gte",
+    "$ne"
+  ],
+  "descripcion": "Mayor o igual a un valor y diferente de otro",
+  "sintaxis": {
+    "forma": "{ campo1: { $gte: valor }, campo2: { $ne: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "sueldo": {
+        "$gte": 3000
+      },
+      "puesto": {
+        "$ne": "practicante"
+      }
+    },
+    "explicación": "Empleados con sueldo desde 3000 que no sean practicantes"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474558769f23b9ca27a48f"
+  },
+  "operadores": [
+    "$nin",
+    "$lt"
+  ],
+  "descripcion": "Fuera de un conjunto y menor a cierto valor",
+  "sintaxis": {
+    "forma": "{ campo1: { $nin: [v1, v2] }, campo2: { $lt: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "ciudad": {
+        "$nin": [
+          "Cartagena",
+          "Barranquilla"
+        ]
+      },
+      "edad": {
+        "$lt": 25
+      }
+    },
+    "explicación": "Personas menores de 25 que no viven en Cartagena ni Barranquilla"
+  }
+},
+{
+  "_id": {
+    "$oid": "68474558769f23b9ca27a490"
+  },
+  "operadores": [
+    "$lte",
+    "$eq"
+  ],
+  "descripcion": "Menor o igual a un valor y exactamente igual a otro",
+  "sintaxis": {
+    "forma": "{ campo1: { $lte: valor }, campo2: { $eq: valor } }"
+  },
+  "ejemplo": {
+    "consulta": {
+      "edad": {
+        "$lte": 50
+      },
+      "genero": {
+        "$eq": "femenino"
+      }
+    },
+    "explicación": "Mujeres con edad menor o igual a 50"
+  }
+}]
